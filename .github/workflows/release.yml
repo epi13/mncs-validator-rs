@@ -3,6 +3,12 @@ name: Release
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing immutable v* tag to rebuild
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -25,7 +31,7 @@ jobs:
             target: aarch64-apple-darwin
             artifact: mncs-rs-v0.2.0-macos-arm64
             binary: mncs-rs
-          - os: macos-13
+          - os: macos-15-intel
             target: x86_64-apple-darwin
             artifact: mncs-rs-v0.2.0-macos-x86_64
             binary: mncs-rs
@@ -36,6 +42,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_tag || github.ref }}
+      - name: Validate release tag
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
+        run: |
+          case "$RELEASE_TAG" in
+            v[0-9]*) ;;
+            *) echo "release tag must begin with v and a digit" >&2; exit 1 ;;
+          esac
+          git fetch --force origin \
+            "refs/tags/${RELEASE_TAG}:refs/tags/${RELEASE_TAG}"
+          test "$(git rev-parse HEAD)" = "$(git rev-list -n 1 "$RELEASE_TAG")"
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
@@ -65,6 +84,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_tag || github.ref }}
       - uses: actions/download-artifact@v4
         with:
           path: release
@@ -76,7 +97,8 @@ jobs:
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" release/* \
+          gh release create "${RELEASE_TAG}" release/* \
             --title "mncs-validator-rs v0.2.0 — Independent MNCS Validator" \
             --notes-file RELEASE_NOTES.md
