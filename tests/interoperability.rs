@@ -8,7 +8,16 @@ use mncs_validator_rs::{attestation, canonical, corpus, package, trust};
 fn shared_corpus_has_complete_agreement() -> anyhow::Result<()> {
     let report = corpus::run(Path::new("fixtures/interoperability/corpus.json"))?;
     assert_eq!(report.vector_count, 32);
-    assert_eq!(report.mismatch_count, 0);
+    assert_eq!(
+        report.mismatch_count,
+        0,
+        "corpus mismatches: {:#?}",
+        report
+            .results
+            .iter()
+            .filter(|result| !result.matches)
+            .collect::<Vec<_>>()
+    );
     assert_eq!(report.unsupported_count, 0);
     Ok(())
 }
