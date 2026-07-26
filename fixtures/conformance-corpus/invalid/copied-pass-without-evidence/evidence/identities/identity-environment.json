@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "offline": true,
+    "profile": "mncs-example-v1"
+  },
+  "description": "Reproducible local identity for python-offline-example.",
+  "extensions": {},
+  "identity_id": "identity-environment",
+  "identity_kind": "environment",
+  "mncs_version": "0.1",
+  "name": "python-offline-example",
+  "schema_version": "0.1.1",
+  "version": "1.0"
+}

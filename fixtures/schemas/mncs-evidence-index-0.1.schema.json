@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.1/mncs-evidence-index.schema.json",
+  "title": "MNCS evidence index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mncs_version", "records", "extensions"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mncs_version": {"const": "0.1"},
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "path", "sha256", "media_type"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+          "kind": {
+            "enum": [
+              "contract",
+              "reference",
+              "machine",
+              "behavioral",
+              "safety",
+              "structural",
+              "performance",
+              "provenance",
+              "regeneration",
+              "other"
+            ]
+          },
+          "path": {"$ref": "#/$defs/path"},
+          "sha256": {"$ref": "#/$defs/hash"},
+          "media_type": {"type": "string", "minLength": 1},
+          "description": {"type": "string"}
+        }
+      }
+    },
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

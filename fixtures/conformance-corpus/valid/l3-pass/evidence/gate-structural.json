@@ -1,0 +1,47 @@
+{
+  "assumptions": [
+    "The declared contract and environment delimit the result."
+  ],
+  "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+  "completed_at": "2026-07-25T12:00:01Z",
+  "component_identity": {
+    "identity_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+    "name": "corpus-l3",
+    "version": "1.0.0"
+  },
+  "contract_id": "corpus.l3.v1",
+  "environment": {
+    "fingerprint": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679",
+    "identity_evidence_id": "identity-environment"
+  },
+  "evaluator": {
+    "identity_evidence_id": "identity-evaluator",
+    "identity_hash": "sha256:8c6dcf0b337eba166957055f8e0fceab18b864868f1a7274f65f5247afbb57f8",
+    "name": "mncs-example-evaluator",
+    "version": "1.0"
+  },
+  "evidence_references": [
+    "contract",
+    "reference",
+    "machine",
+    "identity-evaluator",
+    "identity-environment"
+  ],
+  "extensions": {},
+  "gate_kind": "structural",
+  "limitations": [
+    "Illustrative local evidence; no accredited assurance claim."
+  ],
+  "mncs_version": "0.1",
+  "observation_counts": {
+    "failed": 0,
+    "passed": 4,
+    "total": 4,
+    "unknown": 0
+  },
+  "reference_source_hash": "sha256:4a6c58f5b8797077e927435dba456cfe8197b4a2145b44541694aac8e961f435",
+  "result_id": "gate-structural",
+  "schema_version": "0.1.1",
+  "started_at": "2026-07-25T12:00:00Z",
+  "status": "PASS"
+}

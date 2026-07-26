@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "offline": true,
+    "profile": "mncs-example-v1"
+  },
+  "description": "Reproducible local identity for python-toolchain.",
+  "extensions": {},
+  "identity_id": "identity-toolchain",
+  "identity_kind": "toolchain",
+  "mncs_version": "0.1",
+  "name": "python-toolchain",
+  "schema_version": "0.1.1",
+  "version": "1.0"
+}

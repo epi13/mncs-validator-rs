@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.1",
+  "method": "deterministic differential cases",
+  "case_count": 9,
+  "edge_cases": ["zero", "positive", "negative", "large"],
+  "strict_warnings": true,
+  "status": "PASS"
+}

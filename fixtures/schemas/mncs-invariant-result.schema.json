@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-invariant-result.schema.json",
+  "title": "MNCS structural invariant result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "result_id",
+    "invariant_id",
+    "requirement",
+    "contract_id",
+    "candidate_source_hash",
+    "evaluator_identity_hash",
+    "evaluator_identity_id",
+    "environment_fingerprint",
+    "status",
+    "provider",
+    "provider_version",
+    "analysis_method",
+    "assumptions",
+    "boundedness",
+    "locations",
+    "started_at",
+    "completed_at",
+    "limitations",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "mncs_version": {"const": "0.2"},
+    "result_id": {"$ref": "#/$defs/id"},
+    "invariant_id": {"$ref": "#/$defs/id"},
+    "requirement": {"type": "string", "minLength": 1},
+    "contract_id": {"type": "string", "minLength": 1},
+    "candidate_source_hash": {"$ref": "#/$defs/hash"},
+    "evaluator_identity_hash": {"$ref": "#/$defs/hash"},
+    "evaluator_identity_id": {"$ref": "#/$defs/id"},
+    "environment_fingerprint": {"$ref": "#/$defs/hash"},
+    "status": {"$ref": "#/$defs/status"},
+    "provider": {"type": "string", "minLength": 1},
+    "provider_version": {"type": "string", "minLength": 1},
+    "analysis_method": {"type": "string", "minLength": 1},
+    "assumptions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "boundedness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bounded", "description"],
+      "properties": {
+        "bounded": {"type": "boolean"},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "witness_evidence_id": {"$ref": "#/$defs/id"},
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "line"],
+        "properties": {
+          "path": {"$ref": "#/$defs/path"},
+          "line": {"type": "integer", "minimum": 1},
+          "column": {"type": "integer", "minimum": 1},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "FAIL"}}, "required": ["status"]},
+      "then": {"required": ["witness_evidence_id"]}
+    }
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

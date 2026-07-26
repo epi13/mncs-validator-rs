@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+set -euo pipefail
+
+repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+temporary="$(mktemp -d)"
+trap 'rm -rf "$temporary"' EXIT
+
+cp "$repository_root/target/release/mncs-rs" "$temporary/mncs-rs"
+(
+  cd "$temporary"
+  ./mncs-rs version --json
+  ./mncs-rs canonicalize \
+    "$repository_root/fixtures/interoperability/vectors/canonical-json/basic/original.json"
+  ./mncs-rs verify-package \
+    "$repository_root/fixtures/interoperability/fixtures/packages/valid.mncs" --json
+)

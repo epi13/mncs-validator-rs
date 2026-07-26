@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-key-record.schema.json",
+  "title": "MNCS trusted key record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "algorithm", "keyid", "public_key", "roles", "extensions"],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "algorithm": {"const": "ed25519"},
+    "keyid": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "public_key": {"type": "string", "contentEncoding": "base64"},
+    "trusted": {"type": "boolean"},
+    "roles": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["generator", "evaluator", "release", "auditor"]}},
+    "predicate_types": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "components": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "contracts": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "environments": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "valid_from": {"type": "string", "format": "date-time"},
+    "valid_until": {"type": "string", "format": "date-time"},
+    "extensions": {"type": "object"}
+  }
+}

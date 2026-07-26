@@ -1,0 +1,35 @@
+{
+  "analysis_method": "bounded control-flow enumeration",
+  "assumptions": [
+    "Inputs satisfy the indexed contract grammar."
+  ],
+  "boundedness": {
+    "bounded": true,
+    "description": "32 enumerated states."
+  },
+  "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+  "completed_at": "2026-07-25T12:00:01Z",
+  "contract_id": "corpus.l5.v1",
+  "environment_fingerprint": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679",
+  "evaluator_identity_hash": "sha256:8c6dcf0b337eba166957055f8e0fceab18b864868f1a7274f65f5247afbb57f8",
+  "evaluator_identity_id": "identity-evaluator",
+  "extensions": {},
+  "invariant_id": "bounded-control",
+  "limitations": [
+    "Illustrative provider output."
+  ],
+  "locations": [
+    {
+      "line": 1,
+      "path": "machine/generated.py"
+    }
+  ],
+  "mncs_version": "0.1",
+  "provider": "mncs-example-structural-provider",
+  "provider_version": "1.0",
+  "requirement": "Every declared operation terminates within the contract bound.",
+  "result_id": "invariant-bounded-control",
+  "schema_version": "0.1.1",
+  "started_at": "2026-07-25T12:00:00Z",
+  "status": "PASS"
+}

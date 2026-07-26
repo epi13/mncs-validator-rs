@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-gate-result.schema.json",
+  "title": "MNCS evidence-derived gate result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "result_id",
+    "gate_kind",
+    "contract_id",
+    "component_identity",
+    "candidate_source_hash",
+    "evaluator",
+    "environment",
+    "status",
+    "started_at",
+    "completed_at",
+    "observation_counts",
+    "evidence_references",
+    "assumptions",
+    "limitations",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "mncs_version": {"const": "0.2"},
+    "result_id": {"$ref": "#/$defs/id"},
+    "gate_kind": {
+      "oneOf": [
+        {
+          "enum": [
+            "behavioral",
+            "holdout",
+            "safety",
+            "compiler_matrix",
+            "resource_bounds",
+            "mutation",
+            "structural",
+            "reproducibility",
+            "regeneration",
+            "provenance",
+            "post_certification_identity"
+          ]
+        },
+        {"type": "string", "pattern": "^[a-z][a-z0-9.-]*:[a-z][a-z0-9._-]*$"}
+      ]
+    },
+    "contract_id": {"type": "string", "minLength": 1},
+    "component_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "identity_hash"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "identity_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "candidate_source_hash": {"$ref": "#/$defs/hash"},
+    "reference_source_hash": {"$ref": "#/$defs/hash"},
+    "evaluator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "identity_hash", "identity_evidence_id"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "identity_hash": {"$ref": "#/$defs/hash"},
+        "identity_evidence_id": {"$ref": "#/$defs/id"}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fingerprint", "identity_evidence_id"],
+      "properties": {
+        "fingerprint": {"$ref": "#/$defs/hash"},
+        "identity_evidence_id": {"$ref": "#/$defs/id"}
+      }
+    },
+    "status": {"$ref": "#/$defs/status"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "observation_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "passed", "failed", "unknown"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "passed": {"type": "integer", "minimum": 0},
+        "failed": {"type": "integer", "minimum": 0},
+        "unknown": {"type": "integer", "minimum": 0}
+      }
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/id"},
+      "uniqueItems": true
+    },
+    "failure_witness_reference": {"$ref": "#/$defs/id"},
+    "unknown_reason": {"type": "string", "minLength": 1},
+    "assumptions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "PASS"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "observation_counts": {
+            "properties": {"total": {"minimum": 1}, "passed": {"minimum": 1}}
+          },
+          "evidence_references": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "FAIL"}}, "required": ["status"]},
+      "then": {"required": ["failure_witness_reference"]}
+    },
+    {
+      "if": {"properties": {"status": {"const": "UNKNOWN"}}, "required": ["status"]},
+      "then": {"required": ["unknown_reason"]}
+    }
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "cases": 32,
+  "evidence_references": [
+    "contract",
+    "reference",
+    "machine"
+  ],
+  "kind": "malformed-input-property-fuzz",
+  "status": "PASS"
+}

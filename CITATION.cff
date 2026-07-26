@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Please cite the exact mncs-validator-rs release."
+title: "mncs-validator-rs"
+version: 0.2.0
+date-released: 2026-07-25
+license: Apache-2.0
+repository-code: "https://github.com/epi13/mncs-validator-rs"
+authors:
+  - name: "MNCS Contributors"

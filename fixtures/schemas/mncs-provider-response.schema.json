@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/provider/0.1/response.schema.json",
+  "type": "object",
+  "required": ["protocol_version", "type", "provider", "extensions"],
+  "properties": {
+    "protocol_version": {"const": "0.1"},
+    "type": {"enum": ["capabilities", "analysis_response", "health_response", "error", "cancelled"]},
+    "provider": {"type": "object"},
+    "request_id": {"type": "string"},
+    "status": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "summary": {"type": "string"},
+    "witnesses": {"type": "array"},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"type": "object"}
+  }
+}

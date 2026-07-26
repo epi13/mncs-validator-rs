@@ -1,0 +1,9 @@
+{
+  "id": "canonical/unicode-utf16-order",
+  "input": "original.json",
+  "canonical_hex": "7b22636f6e74726f6c223a225c625c6e222c22c3a9223a22636f6d706f736564222c22e282ac223a226575726f222c22f09f9880223a2266616365227d",
+  "sha256": "bf486062f2811015fd94cd7e9d9eb356a8bf7b8c2d450e0b3243367887fd4329",
+  "expected_python": {"category": "PASS"},
+  "expected_rust": {"category": "PASS"},
+  "expected_exit_category": "success"
+}

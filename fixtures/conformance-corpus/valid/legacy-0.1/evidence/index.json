@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1",
+  "mncs_version": "0.1",
+  "records": [
+    {
+      "id": "behavioral",
+      "kind": "behavioral",
+      "path": "evidence/behavioral.json",
+      "sha256": "sha256:da4cb0e1128bcf54bf30ab29ac9206f4d41764be4cb23b617cb916d86f658a1c",
+      "media_type": "application/json",
+      "description": "Deterministic differential result."
+    }
+  ],
+  "extensions": {}
+}

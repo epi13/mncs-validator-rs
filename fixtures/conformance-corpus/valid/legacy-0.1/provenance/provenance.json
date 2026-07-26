@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1",
+  "mncs_version": "0.1",
+  "generator": "example-identity-generator",
+  "generator_version": "1.0",
+  "generator_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "inputs": [
+    {
+      "path": "specification/contract.md",
+      "sha256": "sha256:7542157286ee3659296a2f61ba73e0ec28213a97cfbc1e53658dadfac87c469d"
+    }
+  ],
+  "command": "make example-minimal",
+  "generated_at": "2026-07-25T00:00:00Z",
+  "source_hash": "sha256:73bd1519e7a6bdc6e4955ce4451ae1eb588a58606c4cf5670c1c164d354678ae",
+  "artifact_hash": "sha256:73bd1519e7a6bdc6e4955ce4451ae1eb588a58606c4cf5670c1c164d354678ae",
+  "evaluator": "mncs-example-evaluator",
+  "evaluator_version": "1.0",
+  "evaluator_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "no_handwritten_changes": true,
+  "extensions": {}
+}

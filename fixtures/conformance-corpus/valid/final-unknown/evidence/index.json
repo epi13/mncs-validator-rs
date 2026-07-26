@@ -1,0 +1,97 @@
+{
+  "extensions": {},
+  "immutable": false,
+  "mncs_version": "0.1",
+  "records": [
+    {
+      "contract_id": "corpus.unknown.v1",
+      "id": "contract",
+      "kind": "contract",
+      "media_type": "text/markdown",
+      "path": "specification/contract.md",
+      "sha256": "sha256:424b6c3c86e13bfd789edf341f3fc359558de0ffa28fc61fabf4538db304ff8c"
+    },
+    {
+      "contract_id": "corpus.unknown.v1",
+      "id": "reference",
+      "kind": "reference",
+      "media_type": "text/x-python",
+      "path": "reference/reference.py",
+      "sha256": "sha256:4a6c58f5b8797077e927435dba456cfe8197b4a2145b44541694aac8e961f435"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "machine",
+      "kind": "machine",
+      "media_type": "text/x-python",
+      "path": "machine/generated.py",
+      "sha256": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "identity-generator",
+      "kind": "identity",
+      "media_type": "application/json",
+      "path": "evidence/identities/identity-generator.json",
+      "sha256": "sha256:119ffdc06e0cc9e2e07e9daa393063ae1545274847e63b2a5f50719dc6d91be7"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "identity-evaluator",
+      "kind": "identity",
+      "media_type": "application/json",
+      "path": "evidence/identities/identity-evaluator.json",
+      "sha256": "sha256:8c6dcf0b337eba166957055f8e0fceab18b864868f1a7274f65f5247afbb57f8"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "identity-environment",
+      "kind": "identity",
+      "media_type": "application/json",
+      "path": "evidence/identities/identity-environment.json",
+      "sha256": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "identity-toolchain",
+      "kind": "identity",
+      "media_type": "application/json",
+      "path": "evidence/identities/identity-toolchain.json",
+      "sha256": "sha256:af20ea500a0e354d5bb8bed2242e583c35f65e682398a4e931c73ec85466a4fc"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "gate-behavioral",
+      "kind": "gate_result",
+      "media_type": "application/json",
+      "path": "evidence/gate-behavioral.json",
+      "sha256": "sha256:b13126a4deba1bebaa7622c0252cb0c04d9470f86b09ebad788e0329d63183e6"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "gate-compiler_matrix",
+      "kind": "gate_result",
+      "media_type": "application/json",
+      "path": "evidence/gate-compiler_matrix.json",
+      "sha256": "sha256:0a54f1450c569b419542b9f88bb2807b32c534663a2a1444571c7956fc546bc5"
+    },
+    {
+      "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+      "contract_id": "corpus.unknown.v1",
+      "id": "provenance-primary",
+      "kind": "provenance",
+      "media_type": "application/json",
+      "path": "provenance/provenance.json",
+      "sha256": "sha256:058d84d7752cf32cab681b00b5294bf2066c3603d87efeab9ca84f45f4bde95a"
+    }
+  ],
+  "schema_version": "0.1.1",
+  "unreferenced_evidence_policy": "warn"
+}

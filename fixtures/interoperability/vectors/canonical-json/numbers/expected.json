@@ -1,0 +1,9 @@
+{
+  "id": "canonical/jcs-number-boundaries",
+  "input": "original.json",
+  "canonical_hex": "7b226672616374696f6e223a3333333333333333332e333333333333332c226c61726765223a31652b33302c226e656761746976655a65726f223a302c22736d616c6c223a302e3030303030317d",
+  "sha256": "f891d34a27ac35713e66dbd418c87d8e9f4f9d406fd0cd7a4b5b8f97b9e52b1f",
+  "expected_python": {"category": "PASS"},
+  "expected_rust": {"category": "PASS"},
+  "expected_exit_category": "success"
+}

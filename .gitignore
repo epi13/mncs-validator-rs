@@ -1,0 +1,4 @@
+/target/
+/.joern/
+*.tmp
+.DS_Store

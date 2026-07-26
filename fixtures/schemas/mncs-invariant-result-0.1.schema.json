@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.1/mncs-invariant-result.schema.json",
+  "title": "MNCS invariant result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "invariant_id",
+    "requirement",
+    "source_hash",
+    "status",
+    "provider",
+    "provider_version",
+    "analysis_method",
+    "assumptions",
+    "boundedness",
+    "locations",
+    "elapsed_seconds",
+    "output_bytes",
+    "limitations",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mncs_version": {"const": "0.1"},
+    "invariant_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "requirement": {"type": "string", "minLength": 1},
+    "source_hash": {"$ref": "#/$defs/hash"},
+    "status": {"$ref": "#/$defs/status"},
+    "provider": {"type": "string", "minLength": 1},
+    "provider_version": {"type": "string", "minLength": 1},
+    "analysis_method": {"type": "string", "minLength": 1},
+    "assumptions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "boundedness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bounded", "description"],
+      "properties": {
+        "bounded": {"type": "boolean"},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "witness": {"$ref": "#/$defs/evidenceReference"},
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "line"],
+        "properties": {
+          "path": {"$ref": "#/$defs/path"},
+          "line": {"type": "integer", "minimum": 1},
+          "column": {"type": "integer", "minimum": 1},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    "elapsed_seconds": {"type": "number", "minimum": 0},
+    "output_bytes": {"type": "integer", "minimum": 0},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

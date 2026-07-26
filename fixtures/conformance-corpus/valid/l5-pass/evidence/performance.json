@@ -1,0 +1,87 @@
+{
+  "baseline_sample_count": 3,
+  "baseline_samples": [
+    100.0,
+    101.0,
+    99.0
+  ],
+  "baseline_summary": {
+    "maximum": 101.0,
+    "mean": 100.0,
+    "minimum": 99.0
+  },
+  "benchmark_harness_hash": "sha256:a86979568edf7e66c1563a9a67e8dcab9870264f1cb6e14aa8ce0d88568f4ce2",
+  "benchmark_harness_identity_id": "identity-harness",
+  "benefit_threshold": {
+    "claimed_status": "PASS",
+    "reasons": [
+      "Derived candidate/reference mean ratio is compared to 1.05."
+    ]
+  },
+  "build_identity_hash": "sha256:d20973e6ed7e390500253ae1f08af9b7cfa5020bc1e8c39804e40238c810064b",
+  "build_identity_id": "identity-build",
+  "candidate_sample_count": 3,
+  "candidate_samples": [
+    110.0,
+    111.0,
+    109.0
+  ],
+  "candidate_source_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+  "candidate_summary": {
+    "maximum": 111.0,
+    "mean": 110.0,
+    "minimum": 109.0
+  },
+  "checksums_or_semantic_identity": {
+    "method": "Exact output equality against the indexed reference corpus.",
+    "passed": true,
+    "required": true
+  },
+  "compiler_identity_hash": "sha256:b633f9599d467361052a34e52609f3be22dd8943c87f57c30603d3356191d589",
+  "compiler_identity_id": "identity-compiler",
+  "completed_at": "2026-07-25T12:00:01Z",
+  "contract_id": "corpus.l5.v1",
+  "corpus_identity_hash": "sha256:e2077bbb6b361f8156fe8e86e1af5c73261ec452a53ad3d1d37e03e07f19c89a",
+  "corpus_identity_id": "identity-corpus",
+  "declared_noise_policy": "No outlier deletion; arithmetic mean of all samples.",
+  "declared_threshold": 1.05,
+  "direction": "higher_is_better",
+  "environment_fingerprint": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679",
+  "environment_identity_id": "identity-environment",
+  "evaluator_identity_hash": "sha256:8c6dcf0b337eba166957055f8e0fceab18b864868f1a7274f65f5247afbb57f8",
+  "evaluator_identity_id": "identity-evaluator",
+  "extensions": {},
+  "limitations": [
+    "Synthetic measurements demonstrate binding and derivation mechanics."
+  ],
+  "measurement_validity": {
+    "claimed_status": "PASS",
+    "reasons": [
+      "Sample count and checksum policy are satisfied."
+    ]
+  },
+  "minimum_sample_count": 3,
+  "mncs_version": "0.1",
+  "objective_metric": "throughput",
+  "reference_source_hash": "sha256:4a6c58f5b8797077e927435dba456cfe8197b4a2145b44541694aac8e961f435",
+  "result_id": "performance-primary",
+  "sample_order": [
+    "baseline",
+    "candidate",
+    "baseline",
+    "candidate",
+    "baseline",
+    "candidate"
+  ],
+  "schema_version": "0.1.1",
+  "started_at": "2026-07-25T12:00:00Z",
+  "unit": "operations/second",
+  "worst_regression": {
+    "claimed_status": "PASS",
+    "maximum_allowed_ratio": 1.1,
+    "observed_ratio": 0.908256880733945,
+    "reasons": [
+      "Worst observed candidate sample stays within policy."
+    ]
+  }
+}

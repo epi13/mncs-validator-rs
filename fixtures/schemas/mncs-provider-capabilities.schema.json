@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/provider/0.1/capabilities.schema.json",
+  "type": "object",
+  "required": ["protocol_version", "type", "provider", "analyses", "statuses", "cancellation", "health_checks", "extensions"],
+  "properties": {
+    "protocol_version": {"const": "0.1"},
+    "type": {"const": "capabilities"},
+    "provider": {"type": "object"},
+    "analyses": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "statuses": {"type": "array", "items": {"enum": ["PASS", "FAIL", "UNKNOWN"]}},
+    "cancellation": {"type": "boolean"},
+    "health_checks": {"type": "boolean"},
+    "extensions": {"type": "object"}
+  }
+}

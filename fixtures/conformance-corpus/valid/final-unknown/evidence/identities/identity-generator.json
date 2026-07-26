@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "offline": true,
+    "profile": "mncs-example-v1"
+  },
+  "description": "Reproducible local identity for mncs-example-generator.",
+  "extensions": {},
+  "identity_id": "identity-generator",
+  "identity_kind": "generator",
+  "mncs_version": "0.1",
+  "name": "mncs-example-generator",
+  "schema_version": "0.1.1",
+  "version": "1.0"
+}

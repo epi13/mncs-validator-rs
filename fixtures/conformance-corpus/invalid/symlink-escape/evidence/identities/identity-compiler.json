@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "offline": true,
+    "profile": "mncs-example-v1"
+  },
+  "description": "Reproducible local identity for python-compiler.",
+  "extensions": {},
+  "identity_id": "identity-compiler",
+  "identity_kind": "compiler",
+  "mncs_version": "0.1",
+  "name": "python-compiler",
+  "schema_version": "0.1.1",
+  "version": "1.0"
+}

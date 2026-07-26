@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-subject-identity.schema.json",
+  "title": "MNCS attestation subject identity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "digest"],
+  "properties": {
+    "name": {"type": "string", "minLength": 1},
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256"],
+      "properties": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    }
+  }
+}
