@@ -45,6 +45,7 @@ jobs:
         with:
           ref: ${{ inputs.release_tag || github.ref }}
       - name: Validate release tag
+        shell: bash
         env:
           RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
         run: |
