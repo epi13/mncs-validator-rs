@@ -1,0 +1,86 @@
+{
+  "$schema": "../../schemas/mncs-manifest.schema.json",
+  "acceptance_policy": {
+    "conflicting_evidence": "reject",
+    "conformance_level": "MNCS-L3",
+    "objective": {
+      "declared_before_generation": true,
+      "direction": "higher_is_better",
+      "metric": "throughput",
+      "minimum_sample_count": 3,
+      "noise_policy": "No outlier deletion; arithmetic mean of all samples.",
+      "threshold": 1.05,
+      "unit": "operations/second"
+    },
+    "on_unknown": "reject",
+    "regression_policy": {
+      "maximum_worst_case_ratio": 1.1
+    },
+    "required_gates": [
+      "behavioral",
+      "compiler_matrix"
+    ]
+  },
+  "claimed_level": "MNCS-L3",
+  "comparison_profile": {
+    "benefit": {
+      "throughput_ratio": 1.1
+    },
+    "complexity": {
+      "source_bytes": 272.0
+    }
+  },
+  "component": {
+    "contract_id": "corpus.l1.v1",
+    "criticality": "moderate",
+    "identity_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+    "name": "corpus-l1",
+    "version": "1.0.0"
+  },
+  "contract": {
+    "path": "specification/contract.md",
+    "sha256": "sha256:424b6c3c86e13bfd789edf341f3fc359558de0ffa28fc61fabf4538db304ff8c"
+  },
+  "environment": {
+    "description": "Offline Python example profile.",
+    "fingerprint": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679",
+    "identity_evidence_id": "identity-environment"
+  },
+  "evidence_index": {
+    "path": "evidence/index.json",
+    "sha256": "sha256:ac2c19af32924afb206f7bccaf6d497abb6a221ee202859082e14910b29752ff"
+  },
+  "extensions": {
+    "example.org:fixture": "l1-pass"
+  },
+  "final_status": "PASS",
+  "gate_results": {
+    "behavioral": [
+      "gate-behavioral"
+    ],
+    "compiler_matrix": [
+      "gate-compiler_matrix"
+    ]
+  },
+  "generator": {
+    "identity_evidence_id": "identity-generator",
+    "identity_hash": "sha256:119ffdc06e0cc9e2e07e9daa393063ae1545274847e63b2a5f50719dc6d91be7",
+    "name": "mncs-example-generator",
+    "version": "1.0"
+  },
+  "limitations": [
+    "Experimental MNCS example scoped to the indexed contract and environment."
+  ],
+  "machine": {
+    "generated_marker": "MNCS-GENERATED",
+    "path": "machine/generated.py",
+    "sha256": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f"
+  },
+  "mncs_version": "0.1",
+  "provenance": "provenance-primary",
+  "reference": {
+    "path": "reference/reference.py",
+    "sha256": "sha256:4a6c58f5b8797077e927435dba456cfe8197b4a2145b44541694aac8e961f435"
+  },
+  "schema_version": "0.1.1"
+}

@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "offline": true,
+    "profile": "mncs-example-v1"
+  },
+  "description": "Reproducible local identity for mncs-example-harness.",
+  "extensions": {},
+  "identity_id": "identity-harness",
+  "identity_kind": "benchmark_harness",
+  "mncs_version": "0.1",
+  "name": "mncs-example-harness",
+  "schema_version": "0.1.1",
+  "version": "1.0"
+}

@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-performance-result.schema.json",
+  "title": "MNCS bound performance observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "result_id",
+    "contract_id",
+    "candidate_source_hash",
+    "reference_source_hash",
+    "evaluator_identity_hash",
+    "evaluator_identity_id",
+    "benchmark_harness_hash",
+    "benchmark_harness_identity_id",
+    "environment_fingerprint",
+    "environment_identity_id",
+    "compiler_identity_hash",
+    "compiler_identity_id",
+    "build_identity_hash",
+    "build_identity_id",
+    "corpus_identity_hash",
+    "corpus_identity_id",
+    "objective_metric",
+    "unit",
+    "direction",
+    "declared_threshold",
+    "declared_noise_policy",
+    "minimum_sample_count",
+    "sample_order",
+    "baseline_samples",
+    "candidate_samples",
+    "baseline_sample_count",
+    "candidate_sample_count",
+    "baseline_summary",
+    "candidate_summary",
+    "checksums_or_semantic_identity",
+    "measurement_validity",
+    "benefit_threshold",
+    "worst_regression",
+    "started_at",
+    "completed_at",
+    "limitations",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "mncs_version": {"const": "0.2"},
+    "result_id": {"$ref": "#/$defs/id"},
+    "contract_id": {"type": "string", "minLength": 1},
+    "candidate_source_hash": {"$ref": "#/$defs/hash"},
+    "reference_source_hash": {"$ref": "#/$defs/hash"},
+    "evaluator_identity_hash": {"$ref": "#/$defs/hash"},
+    "evaluator_identity_id": {"$ref": "#/$defs/id"},
+    "benchmark_harness_hash": {"$ref": "#/$defs/hash"},
+    "benchmark_harness_identity_id": {"$ref": "#/$defs/id"},
+    "environment_fingerprint": {"$ref": "#/$defs/hash"},
+    "environment_identity_id": {"$ref": "#/$defs/id"},
+    "compiler_identity_hash": {"$ref": "#/$defs/hash"},
+    "compiler_identity_id": {"$ref": "#/$defs/id"},
+    "build_identity_hash": {"$ref": "#/$defs/hash"},
+    "build_identity_id": {"$ref": "#/$defs/id"},
+    "corpus_identity_hash": {"$ref": "#/$defs/hash"},
+    "corpus_identity_id": {"$ref": "#/$defs/id"},
+    "objective_metric": {"type": "string", "minLength": 1},
+    "unit": {"type": "string", "minLength": 1},
+    "direction": {"enum": ["higher_is_better", "lower_is_better"]},
+    "declared_threshold": {"type": "number"},
+    "declared_noise_policy": {"type": "string", "minLength": 1},
+    "minimum_sample_count": {"type": "integer", "minimum": 2},
+    "sample_order": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"enum": ["baseline", "candidate"]}
+    },
+    "baseline_samples": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "number"}
+    },
+    "candidate_samples": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "number"}
+    },
+    "baseline_sample_count": {"type": "integer", "minimum": 2},
+    "candidate_sample_count": {"type": "integer", "minimum": 2},
+    "baseline_summary": {"$ref": "#/$defs/summary"},
+    "candidate_summary": {"$ref": "#/$defs/summary"},
+    "checksums_or_semantic_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "passed", "method"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "passed": {"type": "boolean"},
+        "method": {"type": "string", "minLength": 1}
+      }
+    },
+    "measurement_validity": {"$ref": "#/$defs/claimedResult"},
+    "benefit_threshold": {"$ref": "#/$defs/claimedResult"},
+    "worst_regression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claimed_status", "observed_ratio", "maximum_allowed_ratio", "reasons"],
+      "properties": {
+        "claimed_status": {"$ref": "#/$defs/status"},
+        "observed_ratio": {"type": "number"},
+        "maximum_allowed_ratio": {"type": "number", "minimum": 0},
+        "reasons": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mean", "minimum", "maximum"],
+      "properties": {
+        "mean": {"type": "number"},
+        "minimum": {"type": "number"},
+        "maximum": {"type": "number"}
+      }
+    },
+    "claimedResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claimed_status", "reasons"],
+      "properties": {
+        "claimed_status": {"$ref": "#/$defs/status"},
+        "reasons": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

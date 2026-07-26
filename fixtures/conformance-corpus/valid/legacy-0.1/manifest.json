@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schemas/mncs-manifest.schema.json",
+  "schema_version": "0.1",
+  "mncs_version": "0.1",
+  "claimed_level": "MNCS-L1",
+  "component": {
+    "name": "identity-transform",
+    "version": "1.0.0",
+    "contract_id": "example.identity.v1",
+    "criticality": "low"
+  },
+  "reference": {
+    "path": "reference/reference.py",
+    "sha256": "sha256:aa5b31e0378979ef57631bd8106ba75a5ce3e5f4147f061ce8b0c50169b22701"
+  },
+  "machine": {
+    "path": "machine/generated.py",
+    "sha256": "sha256:73bd1519e7a6bdc6e4955ce4451ae1eb588a58606c4cf5670c1c164d354678ae",
+    "generated_marker": "MNCS-GENERATED"
+  },
+  "generator": {
+    "name": "example-identity-generator",
+    "version": "1.0",
+    "identity_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "objective": {
+    "metric": "binary_size",
+    "direction": "lower_is_better",
+    "threshold": 0,
+    "declared_before_generation": true
+  },
+  "acceptance_policy": {
+    "behavioral_pass": "PASS",
+    "holdout_pass": "UNKNOWN",
+    "safety_pass": "UNKNOWN",
+    "resource_bounds_pass": "UNKNOWN",
+    "compiler_matrix_pass": "PASS",
+    "required_invariants_pass": "UNKNOWN",
+    "measurement_valid": "UNKNOWN",
+    "useful_benefit_threshold_met": "UNKNOWN",
+    "worst_case_regression_within_policy": "UNKNOWN",
+    "provenance_complete": "UNKNOWN",
+    "on_unknown": "reject"
+  },
+  "environment": {"language": "Python 3.11+", "offline": true},
+  "evidence_index": {
+    "path": "evidence/index.json",
+    "sha256": "sha256:18870d7b407f601932d164155bdab021c7bbef459ac58566fcc5558a2e83695a"
+  },
+  "invariants": [],
+  "complexity_profile": {
+    "throughput": 1000000,
+    "latency": 0.000001,
+    "worst_case_performance": 0.000001,
+    "memory_bytes": 0,
+    "binary_size_bytes": 256,
+    "source_size_bytes": 247,
+    "changed_lines": 2,
+    "cfg_nodes": 2,
+    "cyclomatic_complexity": 1,
+    "state_count": 1,
+    "branch_count": 0,
+    "portability": 1,
+    "generation_cost_seconds": 0.01,
+    "validation_cost_seconds": 0.02,
+    "conformance_level": "MNCS-L1",
+    "unresolved_unknown_results": 8,
+    "operational_criticality": "low"
+  },
+  "performance_results": [],
+  "resource_bounds": {"memory": "constant", "input": "one Python integer"},
+  "provenance": {
+    "path": "provenance/provenance.json",
+    "sha256": "sha256:e6af2ce8948af73df6245cf186b1439c091ded8599d9792e5ca6d65f88373c9a"
+  },
+  "limitations": ["Illustrative Python example; no cross-runtime claim."],
+  "unsupported_environments": ["Python older than 3.11"],
+  "regeneration": {"command": "make example-minimal", "locked": false, "inputs_complete": true},
+  "rollback": {"reference_available": true, "command": "use reference/reference.py"},
+  "final_status": "PASS",
+  "extensions": {"mncs.dev:example": true}
+}

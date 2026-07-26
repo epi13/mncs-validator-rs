@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-package-index.schema.json",
+  "title": "MNCS deterministic package index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mncs_version", "format", "files", "evidence_index_sha256", "extensions"],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "mncs_version": {"const": "0.2"},
+    "format": {"const": "mncs-zip-0.1"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "size", "sha256"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"},
+          "size": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "evidence_index_sha256": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "extensions": {"type": "object"}
+  }
+}

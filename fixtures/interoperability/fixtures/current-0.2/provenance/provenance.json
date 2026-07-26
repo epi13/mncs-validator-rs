@@ -1,0 +1,34 @@
+{
+  "candidate_source_hash": "sha256:73bd1519e7a6bdc6e4955ce4451ae1eb588a58606c4cf5670c1c164d354678ae",
+  "contract_id": "example.identity.v1",
+  "environment_fingerprint": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679",
+  "environment_identity_id": "identity-environment",
+  "evaluation_command": "python tools/evaluate.py --offline",
+  "evaluation_completed_at": "2026-07-25T12:01:01Z",
+  "evaluation_started_at": "2026-07-25T12:01:00Z",
+  "evaluator_identity_hash": "sha256:8c6dcf0b337eba166957055f8e0fceab18b864868f1a7274f65f5247afbb57f8",
+  "evaluator_identity_id": "identity-evaluator",
+  "evaluator_inputs": [
+    "machine",
+    "gate-behavioral",
+    "gate-compiler_matrix"
+  ],
+  "extensions": {},
+  "generation_command": "python tools/generate.py --locked",
+  "generation_completed_at": "2026-07-25T12:00:01Z",
+  "generation_started_at": "2026-07-25T12:00:00Z",
+  "generator_identity_hash": "sha256:119ffdc06e0cc9e2e07e9daa393063ae1545274847e63b2a5f50719dc6d91be7",
+  "generator_identity_id": "identity-generator",
+  "generator_inputs": [
+    "contract",
+    "reference",
+    "identity-generator"
+  ],
+  "handwritten_change_status": "none",
+  "mncs_version": "0.1",
+  "provenance_id": "provenance-primary",
+  "regeneration_lock_state": "locked",
+  "schema_version": "0.1.1",
+  "toolchain_identity_hash": "sha256:af20ea500a0e354d5bb8bed2242e583c35f65e682398a4e931c73ec85466a4fc",
+  "toolchain_identity_id": "identity-toolchain"
+}

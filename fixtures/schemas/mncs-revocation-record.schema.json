@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-revocation-record.schema.json",
+  "title": "MNCS key revocation record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["keyid", "revoked_at", "reason", "extensions"],
+  "properties": {
+    "keyid": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "revoked_at": {"type": "string", "format": "date-time"},
+    "reason": {"type": "string", "minLength": 1},
+    "extensions": {"type": "object"}
+  }
+}

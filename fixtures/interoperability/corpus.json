@@ -1,0 +1,307 @@
+{
+  "corpus_version": "0.2.0",
+  "mncs_version": "0.2",
+  "schema_version": "0.2",
+  "vectors": [
+    {
+      "id": "hash/canonical-basic",
+      "kind": "canonical",
+      "input_paths": ["vectors/canonical-json/basic/original.json", "vectors/canonical-json/basic/expected.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": "43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777"
+    },
+    {
+      "id": "canonical/unicode",
+      "kind": "canonical",
+      "input_paths": ["vectors/canonical-json/unicode/original.json", "vectors/canonical-json/unicode/expected.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": "bf486062f2811015fd94cd7e9d9eb356a8bf7b8c2d450e0b3243367887fd4329"
+    },
+    {
+      "id": "canonical/numbers",
+      "kind": "canonical",
+      "input_paths": ["vectors/canonical-json/numbers/original.json", "vectors/canonical-json/numbers/expected.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": "f891d34a27ac35713e66dbd418c87d8e9f4f9d406fd0cd7a4b5b8f97b9e52b1f"
+    },
+    {
+      "id": "canonical/duplicate-key",
+      "kind": "canonical",
+      "input_paths": ["vectors/canonical-json/duplicate-key/original.json", "vectors/canonical-json/duplicate-key/expected.json"],
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "invalid-input",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "canonical/nonfinite",
+      "kind": "canonical",
+      "input_paths": ["vectors/canonical-json/nonfinite/original.json", "vectors/canonical-json/nonfinite/expected.json"],
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "invalid-input",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/valid",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"subject": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "contract": "fixture.contract", "environment": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/invalid",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/invalid-signature.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "invalid-signature",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/expired",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/expired.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "EXPIRED"},
+      "expected_rust": {"category": "EXPIRED"},
+      "expected_exit_category": "untrusted",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/wrong-subject",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"subject": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "stale-subject",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/wrong-contract",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"contract": "other.contract", "now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "wrong-contract",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/wrong-environment",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"environment": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "wrong-environment",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/multiple",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/multiple.envelope.json", "fixtures/attestations/public-key.json", "fixtures/attestations/second-public-key.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/duplicate",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/duplicate.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "duplicate-signature",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "signature/malformed-envelope",
+      "kind": "signature",
+      "input_paths": ["fixtures/attestations/malformed.envelope.json", "fixtures/attestations/public-key.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "malformed",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "trust/revoked",
+      "kind": "trust",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/revoked-policy.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "UNTRUSTED"},
+      "expected_rust": {"category": "UNTRUSTED"},
+      "expected_exit_category": "revoked",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "trust/valid-but-untrusted-key",
+      "kind": "trust",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/untrusted-policy.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "UNTRUSTED"},
+      "expected_rust": {"category": "UNTRUSTED"},
+      "expected_exit_category": "untrusted-key",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "trust/insufficient-threshold",
+      "kind": "trust",
+      "input_paths": ["fixtures/attestations/valid.envelope.json", "fixtures/attestations/threshold-policy.json"],
+      "bindings": {"now": "2026-01-01T00:00:00Z"},
+      "expected_python": {"category": "UNTRUSTED"},
+      "expected_rust": {"category": "UNTRUSTED"},
+      "expected_exit_category": "insufficient-threshold",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "package/valid",
+      "kind": "package",
+      "input_paths": ["fixtures/packages/valid.mncs"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": "ba4da8dde1bd4eae4bed37f3379c6c85dbc71cf380b0f9e2837367f2f38c6b68"
+    },
+    {
+      "id": "package/reproducible-bytes",
+      "kind": "package-reproducible",
+      "input_paths": ["fixtures/packages/valid.mncs", "fixtures/packages/reproducible-copy.mncs"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": "ba4da8dde1bd4eae4bed37f3379c6c85dbc71cf380b0f9e2837367f2f38c6b68"
+    },
+    {
+      "id": "package/archive-traversal",
+      "kind": "package",
+      "input_paths": ["fixtures/packages/traversal.mncs"],
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "unsafe-path",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "package/oversized",
+      "kind": "package",
+      "input_paths": ["fixtures/packages/oversized.mncs"],
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "resource-limit",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "package/symlink",
+      "kind": "package",
+      "input_paths": ["fixtures/packages/symlink.mncs"],
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "unsafe-type",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "schema/legacy-0.1",
+      "kind": "manifest",
+      "input_paths": ["../conformance-corpus/valid/legacy-0.1/manifest.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "schema/legacy-0.1.1",
+      "kind": "manifest",
+      "input_paths": ["../conformance-corpus/valid/l1-pass/manifest.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "schema/current-0.2",
+      "kind": "manifest",
+      "input_paths": ["fixtures/current-0.2/manifest.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "status/PASS",
+      "kind": "manifest",
+      "input_paths": ["../conformance-corpus/valid/l1-pass/manifest.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "status/FAIL",
+      "kind": "manifest",
+      "input_paths": ["../conformance-corpus/valid/final-fail/manifest.json"],
+      "expected_python": {"category": "FAIL"},
+      "expected_rust": {"category": "FAIL"},
+      "expected_exit_category": "valid-nonpass",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "status/UNKNOWN",
+      "kind": "manifest",
+      "input_paths": ["../conformance-corpus/valid/final-unknown/manifest.json"],
+      "expected_python": {"category": "UNKNOWN"},
+      "expected_rust": {"category": "UNKNOWN"},
+      "expected_exit_category": "valid-nonpass",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "provider/PASS",
+      "kind": "provider",
+      "input_paths": ["fixtures/providers/pass.json"],
+      "expected_python": {"category": "PASS"},
+      "expected_rust": {"category": "PASS"},
+      "expected_exit_category": "success",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "provider/FAIL",
+      "kind": "provider",
+      "input_paths": ["fixtures/providers/fail.json"],
+      "expected_python": {"category": "FAIL"},
+      "expected_rust": {"category": "FAIL"},
+      "expected_exit_category": "valid-nonpass",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "provider/UNKNOWN",
+      "kind": "provider",
+      "input_paths": ["fixtures/providers/unknown.json"],
+      "expected_python": {"category": "UNKNOWN"},
+      "expected_rust": {"category": "UNKNOWN"},
+      "expected_exit_category": "valid-nonpass",
+      "expected_canonical_hash": null
+    },
+    {
+      "id": "provider/malformed-protocol",
+      "kind": "provider",
+      "input_paths": ["fixtures/providers/malformed.json"],
+      "expected_python": {"category": "INVALID"},
+      "expected_rust": {"category": "INVALID"},
+      "expected_exit_category": "malformed",
+      "expected_canonical_hash": null
+    }
+  ]
+}

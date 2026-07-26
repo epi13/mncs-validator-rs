@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/provider/0.1/error.schema.json",
+  "type": "object",
+  "required": ["protocol_version", "type", "request_id", "provider", "code", "message", "retryable", "extensions"],
+  "properties": {
+    "protocol_version": {"const": "0.1"},
+    "type": {"const": "error"},
+    "request_id": {"type": "string"},
+    "provider": {"type": "object"},
+    "code": {"type": "string", "minLength": 1},
+    "message": {"type": "string", "minLength": 1},
+    "retryable": {"type": "boolean"},
+    "extensions": {"type": "object"}
+  }
+}

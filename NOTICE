@@ -1,0 +1,5 @@
+mncs-validator-rs
+Copyright 2026 MNCS Contributors
+
+Independent Rust implementation of the Machine-Native Complexity Standard.
+Licensed under the Apache License, Version 2.0.

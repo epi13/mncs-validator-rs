@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.1/mncs-manifest.schema.json",
+  "title": "MNCS conformance manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "mncs_version",
+    "claimed_level",
+    "component",
+    "reference",
+    "machine",
+    "generator",
+    "objective",
+    "acceptance_policy",
+    "environment",
+    "evidence_index",
+    "invariants",
+    "complexity_profile",
+    "performance_results",
+    "resource_bounds",
+    "provenance",
+    "limitations",
+    "unsupported_environments",
+    "regeneration",
+    "rollback",
+    "final_status",
+    "extensions"
+  ],
+  "properties": {
+    "$schema": {"type": "string", "minLength": 1},
+    "schema_version": {"const": "0.1"},
+    "mncs_version": {"const": "0.1"},
+    "claimed_level": {"enum": ["MNCS-L1", "MNCS-L2", "MNCS-L3", "MNCS-L4", "MNCS-L5"]},
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "contract_id", "criticality"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "contract_id": {"type": "string", "minLength": 1},
+        "criticality": {"enum": ["low", "moderate", "high", "critical"]}
+      }
+    },
+    "reference": {"$ref": "#/$defs/identity"},
+    "machine": {
+      "allOf": [
+        {"$ref": "#/$defs/identity"},
+        {
+          "type": "object",
+          "required": ["generated_marker"],
+          "properties": {"generated_marker": {"const": "MNCS-GENERATED"}}
+        }
+      ]
+    },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "identity_hash"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "identity_hash": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "direction", "threshold", "declared_before_generation"],
+      "properties": {
+        "metric": {
+          "enum": [
+            "throughput",
+            "latency",
+            "memory",
+            "binary_size",
+            "energy",
+            "reliability",
+            "hardware_utilization",
+            "verified_state_space_coverage"
+          ]
+        },
+        "direction": {"enum": ["higher_is_better", "lower_is_better"]},
+        "threshold": {"type": "number"},
+        "declared_before_generation": {"const": true}
+      }
+    },
+    "acceptance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "behavioral_pass",
+        "holdout_pass",
+        "safety_pass",
+        "resource_bounds_pass",
+        "compiler_matrix_pass",
+        "required_invariants_pass",
+        "measurement_valid",
+        "useful_benefit_threshold_met",
+        "worst_case_regression_within_policy",
+        "provenance_complete",
+        "on_unknown"
+      ],
+      "properties": {
+        "behavioral_pass": {"$ref": "#/$defs/status"},
+        "holdout_pass": {"$ref": "#/$defs/status"},
+        "safety_pass": {"$ref": "#/$defs/status"},
+        "resource_bounds_pass": {"$ref": "#/$defs/status"},
+        "compiler_matrix_pass": {"$ref": "#/$defs/status"},
+        "required_invariants_pass": {"$ref": "#/$defs/status"},
+        "measurement_valid": {"$ref": "#/$defs/status"},
+        "useful_benefit_threshold_met": {"$ref": "#/$defs/status"},
+        "worst_case_regression_within_policy": {"$ref": "#/$defs/status"},
+        "provenance_complete": {"$ref": "#/$defs/status"},
+        "on_unknown": {"enum": ["reject", "manual_review"]}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": {"type": ["string", "number", "boolean"]},
+      "minProperties": 1
+    },
+    "evidence_index": {"$ref": "#/$defs/reference"},
+    "invariants": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "complexity_profile": {"$ref": "#/$defs/complexityProfile"},
+    "performance_results": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "resource_bounds": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": ["number", "integer", "string"]}
+    },
+    "provenance": {"$ref": "#/$defs/reference"},
+    "limitations": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "unsupported_environments": {"type": "array", "items": {"type": "string"}},
+    "regeneration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "locked", "inputs_complete"],
+      "properties": {
+        "command": {"type": "string", "minLength": 1},
+        "locked": {"type": "boolean"},
+        "inputs_complete": {"type": "boolean"}
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_available", "command"],
+      "properties": {
+        "reference_available": {"type": "boolean"},
+        "command": {"type": "string", "minLength": 1}
+      }
+    },
+    "final_status": {"$ref": "#/$defs/status"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/hash"},
+        "generated_marker": {"type": "string"}
+      }
+    },
+    "complexityProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "throughput",
+        "latency",
+        "worst_case_performance",
+        "memory_bytes",
+        "binary_size_bytes",
+        "source_size_bytes",
+        "changed_lines",
+        "cfg_nodes",
+        "cyclomatic_complexity",
+        "state_count",
+        "branch_count",
+        "portability",
+        "generation_cost_seconds",
+        "validation_cost_seconds",
+        "conformance_level",
+        "unresolved_unknown_results",
+        "operational_criticality"
+      ],
+      "properties": {
+        "throughput": {"type": "number", "minimum": 0},
+        "latency": {"type": "number", "minimum": 0},
+        "worst_case_performance": {"type": "number", "minimum": 0},
+        "memory_bytes": {"type": "integer", "minimum": 0},
+        "binary_size_bytes": {"type": "integer", "minimum": 0},
+        "source_size_bytes": {"type": "integer", "minimum": 0},
+        "changed_lines": {"type": "integer", "minimum": 0},
+        "cfg_nodes": {"type": "integer", "minimum": 0},
+        "cyclomatic_complexity": {"type": "integer", "minimum": 1},
+        "state_count": {"type": "integer", "minimum": 1},
+        "branch_count": {"type": "integer", "minimum": 0},
+        "portability": {"type": "number", "minimum": 0},
+        "generation_cost_seconds": {"type": "number", "minimum": 0},
+        "validation_cost_seconds": {"type": "number", "minimum": 0},
+        "conformance_level": {
+          "enum": ["MNCS-L1", "MNCS-L2", "MNCS-L3", "MNCS-L4", "MNCS-L5"]
+        },
+        "unresolved_unknown_results": {"type": "integer", "minimum": 0},
+        "operational_criticality": {"enum": ["low", "moderate", "high", "critical"]}
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

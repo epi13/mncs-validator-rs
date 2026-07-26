@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schemas/mncs-manifest.schema.json",
+  "acceptance_policy": {
+    "conflicting_evidence": "reject",
+    "conformance_level": "MNCS-L4",
+    "mutation_required": true,
+    "objective": {
+      "declared_before_generation": true,
+      "direction": "higher_is_better",
+      "metric": "throughput",
+      "minimum_sample_count": 3,
+      "noise_policy": "No outlier deletion; arithmetic mean of all samples.",
+      "threshold": 1.05,
+      "unit": "operations/second"
+    },
+    "on_unknown": "reject",
+    "regression_policy": {
+      "maximum_worst_case_ratio": 1.1
+    },
+    "required_gates": [
+      "behavioral",
+      "compiler_matrix",
+      "safety",
+      "resource_bounds",
+      "mutation",
+      "structural",
+      "measurement_valid",
+      "benefit_threshold",
+      "worst_regression"
+    ]
+  },
+  "claimed_level": "MNCS-L4",
+  "comparison_profile": {
+    "benefit": {
+      "throughput_ratio": 1.1
+    },
+    "complexity": {
+      "source_bytes": 272.0
+    }
+  },
+  "component": {
+    "contract_id": "corpus.l4.v1",
+    "criticality": "moderate",
+    "identity_hash": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f",
+    "name": "corpus-l4",
+    "version": "1.0.0"
+  },
+  "contract": {
+    "path": "specification/contract.md",
+    "sha256": "sha256:424b6c3c86e13bfd789edf341f3fc359558de0ffa28fc61fabf4538db304ff8c"
+  },
+  "environment": {
+    "description": "Offline Python example profile.",
+    "fingerprint": "sha256:bec2072576f16c4fc1cb89d286b8a29b8035f5e83b6b946c4180b7928dbc1679",
+    "identity_evidence_id": "identity-environment"
+  },
+  "evidence_index": {
+    "path": "evidence/index.json",
+    "sha256": "sha256:ec8d7ca85d8fe6d3cf562efaffdd21789af0a0aea1725103a90783936acc8142"
+  },
+  "extensions": {
+    "vendor.example:behavioral": {
+      "status": "PASS"
+    }
+  },
+  "final_status": "PASS",
+  "fuzz_evidence": [
+    "fuzz-primary",
+    "mutation-primary"
+  ],
+  "gate_results": {
+    "behavioral": [
+      "gate-behavioral"
+    ],
+    "benefit_threshold": [
+      "performance-primary"
+    ],
+    "compiler_matrix": [
+      "gate-compiler_matrix"
+    ],
+    "measurement_valid": [
+      "performance-primary"
+    ],
+    "mutation": [
+      "gate-mutation"
+    ],
+    "resource_bounds": [
+      "gate-resource_bounds"
+    ],
+    "safety": [
+      "gate-safety"
+    ],
+    "structural": [
+      "gate-structural"
+    ],
+    "worst_regression": [
+      "performance-primary"
+    ]
+  },
+  "generator": {
+    "identity_evidence_id": "identity-generator",
+    "identity_hash": "sha256:119ffdc06e0cc9e2e07e9daa393063ae1545274847e63b2a5f50719dc6d91be7",
+    "name": "mncs-example-generator",
+    "version": "1.0"
+  },
+  "invariants": [
+    "invariant-bounded-control"
+  ],
+  "limitations": [
+    "Experimental MNCS example scoped to the indexed contract and environment."
+  ],
+  "machine": {
+    "generated_marker": "MNCS-GENERATED",
+    "path": "machine/generated.py",
+    "sha256": "sha256:7c0ccfba916d823616650efc00570a97ec3b4f2238620ce1430c5791a64db45f"
+  },
+  "mncs_version": "0.1",
+  "performance_results": [
+    "performance-primary"
+  ],
+  "provenance": "provenance-primary",
+  "reference": {
+    "path": "reference/reference.py",
+    "sha256": "sha256:4a6c58f5b8797077e927435dba456cfe8197b4a2145b44541694aac8e961f435"
+  },
+  "resource_bounds": {
+    "maximum_input_units": 4096,
+    "memory": "bounded"
+  },
+  "schema_version": "0.1.1",
+  "structural_aggregate": {
+    "bounded": true,
+    "provider_assumptions": [
+      "The indexed contract bounds all inputs."
+    ],
+    "required_invariants": [
+      "invariant-bounded-control"
+    ]
+  }
+}

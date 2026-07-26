@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/provider/0.1/request.schema.json",
+  "type": "object",
+  "required": ["protocol_version", "type", "request_id", "extensions"],
+  "properties": {
+    "protocol_version": {"const": "0.1"},
+    "type": {"enum": ["capabilities", "analysis_request", "health", "cancel"]},
+    "request_id": {"type": "string"},
+    "analysis": {"type": "string"},
+    "component": {"type": "object"},
+    "limits": {"type": "object"},
+    "extensions": {"type": "object"}
+  }
+}

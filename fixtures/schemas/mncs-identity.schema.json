@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-identity.schema.json",
+  "title": "MNCS content-addressed identity record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "identity_id",
+    "identity_kind",
+    "name",
+    "version",
+    "description",
+    "attributes",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "mncs_version": {"const": "0.2"},
+    "identity_id": {"$ref": "#/$defs/id"},
+    "identity_kind": {
+      "enum": [
+        "generator",
+        "evaluator",
+        "environment",
+        "toolchain",
+        "compiler",
+        "benchmark_harness",
+        "corpus",
+        "build"
+      ]
+    },
+    "name": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "attributes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": ["string", "number", "integer", "boolean"]}
+    },
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

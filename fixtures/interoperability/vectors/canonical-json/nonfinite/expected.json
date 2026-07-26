@@ -1,0 +1,9 @@
+{
+  "id": "canonical/reject-nonfinite",
+  "input": "original.json",
+  "canonical_hex": null,
+  "sha256": null,
+  "expected_python": {"category": "INVALID", "reason": "nonfinite"},
+  "expected_rust": {"category": "INVALID", "reason": "nonfinite"},
+  "expected_exit_category": "invalid-input"
+}

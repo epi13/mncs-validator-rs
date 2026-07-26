@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+set -euo pipefail
+
+repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+binary="${MNCS_RS_BINARY:-$repository_root/target/release/mncs-rs}"
+
+if [[ ! -x "$binary" ]]; then
+  cargo build --release --manifest-path "$repository_root/Cargo.toml"
+fi
+
+"$binary" corpus "$repository_root/fixtures/interoperability/corpus.json"

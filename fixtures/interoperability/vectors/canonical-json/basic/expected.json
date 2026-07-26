@@ -1,0 +1,9 @@
+{
+  "id": "canonical/basic-object-order",
+  "input": "original.json",
+  "canonical_hex": "7b2261223a312c2262223a327d",
+  "sha256": "43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777",
+  "expected_python": {"category": "PASS"},
+  "expected_rust": {"category": "PASS"},
+  "expected_exit_category": "success"
+}

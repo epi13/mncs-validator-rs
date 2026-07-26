@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.1/mncs-performance-result.schema.json",
+  "title": "MNCS performance result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "objective",
+    "unit",
+    "direction",
+    "baseline_samples",
+    "candidate_samples",
+    "measurement_order",
+    "corpus",
+    "checksums_match",
+    "noise_policy",
+    "worst_corpus_regression",
+    "platform",
+    "compiler",
+    "build",
+    "binary_size_bytes",
+    "peak_memory_bytes",
+    "measurement_valid",
+    "performance_victory",
+    "useful_benefit_threshold_met",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mncs_version": {"const": "0.1"},
+    "objective": {
+      "enum": [
+        "throughput",
+        "latency",
+        "memory",
+        "binary_size",
+        "energy",
+        "reliability",
+        "hardware_utilization",
+        "verified_state_space_coverage"
+      ]
+    },
+    "unit": {"type": "string", "minLength": 1},
+    "direction": {"enum": ["higher_is_better", "lower_is_better"]},
+    "baseline_samples": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "number"}
+    },
+    "candidate_samples": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "number"}
+    },
+    "measurement_order": {"enum": ["randomized", "alternating"]},
+    "corpus": {"type": "string", "minLength": 1},
+    "checksums_match": {"type": "boolean"},
+    "noise_policy": {"type": "string", "minLength": 1},
+    "worst_corpus_regression": {"type": "number"},
+    "platform": {"type": "string", "minLength": 1},
+    "compiler": {"type": "string", "minLength": 1},
+    "build": {"type": "string", "minLength": 1},
+    "binary_size_bytes": {"type": "integer", "minimum": 0},
+    "peak_memory_bytes": {"type": "integer", "minimum": 0},
+    "measurement_valid": {"type": "boolean"},
+    "performance_victory": {"type": "boolean"},
+    "useful_benefit_threshold_met": {"type": "boolean"},
+    "invalid_reasons": {"type": "array", "items": {"type": "string"}},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

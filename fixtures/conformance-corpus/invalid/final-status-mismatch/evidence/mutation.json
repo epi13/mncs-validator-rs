@@ -1,0 +1,10 @@
+{
+  "evidence_references": [
+    "contract",
+    "machine"
+  ],
+  "killed": 8,
+  "kind": "mutation-analysis",
+  "mutants": 8,
+  "status": "PASS"
+}

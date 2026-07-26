@@ -1,0 +1,5 @@
+{
+  "expected": "operational-error",
+  "operation": "schema-resource-lookup",
+  "schema": "intentionally-missing.schema.json"
+}

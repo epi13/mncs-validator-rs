@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-provenance.schema.json",
+  "title": "MNCS bound provenance record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mncs_version",
+    "provenance_id",
+    "contract_id",
+    "generator_identity_id",
+    "generator_identity_hash",
+    "evaluator_identity_id",
+    "evaluator_identity_hash",
+    "generator_inputs",
+    "evaluator_inputs",
+    "candidate_source_hash",
+    "toolchain_identity_id",
+    "toolchain_identity_hash",
+    "environment_identity_id",
+    "environment_fingerprint",
+    "generation_command",
+    "evaluation_command",
+    "generation_started_at",
+    "generation_completed_at",
+    "evaluation_started_at",
+    "evaluation_completed_at",
+    "handwritten_change_status",
+    "regeneration_lock_state",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "mncs_version": {"const": "0.2"},
+    "provenance_id": {"$ref": "#/$defs/id"},
+    "contract_id": {"type": "string", "minLength": 1},
+    "generator_identity_id": {"$ref": "#/$defs/id"},
+    "generator_identity_hash": {"$ref": "#/$defs/hash"},
+    "evaluator_identity_id": {"$ref": "#/$defs/id"},
+    "evaluator_identity_hash": {"$ref": "#/$defs/hash"},
+    "generator_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/id"},
+      "uniqueItems": true
+    },
+    "evaluator_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/id"},
+      "uniqueItems": true
+    },
+    "candidate_source_hash": {"$ref": "#/$defs/hash"},
+    "built_artifact_hash": {"$ref": "#/$defs/hash"},
+    "toolchain_identity_id": {"$ref": "#/$defs/id"},
+    "toolchain_identity_hash": {"$ref": "#/$defs/hash"},
+    "environment_identity_id": {"$ref": "#/$defs/id"},
+    "environment_fingerprint": {"$ref": "#/$defs/hash"},
+    "generation_command": {"type": "string", "minLength": 1},
+    "evaluation_command": {"type": "string", "minLength": 1},
+    "generation_started_at": {"type": "string", "format": "date-time"},
+    "generation_completed_at": {"type": "string", "format": "date-time"},
+    "evaluation_started_at": {"type": "string", "format": "date-time"},
+    "evaluation_completed_at": {"type": "string", "format": "date-time"},
+    "handwritten_change_status": {"enum": ["none", "declared", "unknown"]},
+    "regeneration_lock_state": {"enum": ["locked", "unlocked", "unknown"]},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"},
+      "additionalProperties": true
+    }
+  }
+}

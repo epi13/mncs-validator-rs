@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-canonical-document.schema.json",
+  "title": "MNCS canonical JSON document descriptor",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "media_type", "canonicalization", "sha256", "extensions"],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "media_type": {"type": "string", "minLength": 1},
+    "canonicalization": {"const": "RFC8785"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"}
+    }
+  }
+}

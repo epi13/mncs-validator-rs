@@ -1,0 +1,14 @@
+{
+  "attributes": {
+    "offline": true,
+    "profile": "mncs-example-v1"
+  },
+  "description": "Reproducible local identity for mncs-example-evaluator.",
+  "extensions": {},
+  "identity_id": "identity-evaluator",
+  "identity_kind": "evaluator",
+  "mncs_version": "0.1",
+  "name": "mncs-example-evaluator",
+  "schema_version": "0.1.1",
+  "version": "1.0"
+}

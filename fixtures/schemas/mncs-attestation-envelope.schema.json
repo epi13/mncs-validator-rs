@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-attestation-envelope.schema.json",
+  "title": "MNCS DSSE-compatible attestation envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["payloadType", "payload", "signatures"],
+  "properties": {
+    "payloadType": {"const": "application/vnd.mncs.attestation-statement.v0.2+json"},
+    "payload": {"type": "string", "contentEncoding": "base64"},
+    "signatures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["keyid", "algorithm", "sig"],
+        "properties": {
+          "keyid": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "algorithm": {"const": "ed25519"},
+          "sig": {"type": "string", "contentEncoding": "base64"}
+        }
+      }
+    }
+  }
+}

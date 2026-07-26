@@ -1,0 +1,159 @@
+{
+  "cases": [
+    {
+      "computed_status": "FAIL",
+      "id": "valid/final-fail",
+      "legacy": false,
+      "path": "valid/final-fail",
+      "valid": true
+    },
+    {
+      "computed_status": "UNKNOWN",
+      "id": "valid/final-unknown",
+      "legacy": false,
+      "path": "valid/final-unknown",
+      "valid": true
+    },
+    {
+      "computed_status": "PASS",
+      "id": "valid/l1-pass",
+      "legacy": false,
+      "path": "valid/l1-pass",
+      "valid": true
+    },
+    {
+      "computed_status": "PASS",
+      "id": "valid/l2-pass",
+      "legacy": false,
+      "path": "valid/l2-pass",
+      "valid": true
+    },
+    {
+      "computed_status": "PASS",
+      "id": "valid/l3-pass",
+      "legacy": false,
+      "path": "valid/l3-pass",
+      "valid": true
+    },
+    {
+      "computed_status": "PASS",
+      "id": "valid/l4-pass",
+      "legacy": false,
+      "path": "valid/l4-pass",
+      "valid": true
+    },
+    {
+      "computed_status": "PASS",
+      "id": "valid/l5-pass",
+      "legacy": false,
+      "path": "valid/l5-pass",
+      "valid": true
+    },
+    {
+      "computed_status": "PASS",
+      "id": "valid/legacy-0.1",
+      "legacy": true,
+      "path": "valid/legacy-0.1",
+      "valid": true
+    },
+    {
+      "id": "invalid/conflicting-evidence-ids",
+      "path": "invalid/conflicting-evidence-ids",
+      "valid": false
+    },
+    {
+      "id": "invalid/copied-pass-without-evidence",
+      "path": "invalid/copied-pass-without-evidence",
+      "valid": false
+    },
+    {
+      "id": "invalid/duplicate-path-conflicting-hashes",
+      "path": "invalid/duplicate-path-conflicting-hashes",
+      "valid": false
+    },
+    {
+      "id": "invalid/extension-redefines-core",
+      "path": "invalid/extension-redefines-core",
+      "valid": false
+    },
+    {
+      "id": "invalid/final-status-mismatch",
+      "path": "invalid/final-status-mismatch",
+      "valid": false
+    },
+    {
+      "id": "invalid/level-missing-lower-evidence",
+      "path": "invalid/level-missing-lower-evidence",
+      "valid": false
+    },
+    {
+      "id": "invalid/malformed-timestamps",
+      "path": "invalid/malformed-timestamps",
+      "valid": false
+    },
+    {
+      "id": "invalid/missing-gate-evidence",
+      "path": "invalid/missing-gate-evidence",
+      "valid": false
+    },
+    {
+      "id": "invalid/nonfinite-samples",
+      "path": "invalid/nonfinite-samples",
+      "valid": false
+    },
+    {
+      "id": "invalid/objective-mismatch",
+      "path": "invalid/objective-mismatch",
+      "valid": false
+    },
+    {
+      "id": "invalid/path-escape",
+      "path": "invalid/path-escape",
+      "valid": false
+    },
+    {
+      "id": "invalid/performance-other-candidate",
+      "path": "invalid/performance-other-candidate",
+      "valid": false
+    },
+    {
+      "id": "invalid/stale-candidate-hash",
+      "path": "invalid/stale-candidate-hash",
+      "valid": false
+    },
+    {
+      "id": "invalid/stale-evaluator-hash",
+      "path": "invalid/stale-evaluator-hash",
+      "valid": false
+    },
+    {
+      "id": "invalid/stale-reference-hash",
+      "path": "invalid/stale-reference-hash",
+      "valid": false
+    },
+    {
+      "id": "invalid/symlink-escape",
+      "path": "invalid/symlink-escape",
+      "valid": false
+    },
+    {
+      "id": "invalid/unindexed-required-evidence",
+      "path": "invalid/unindexed-required-evidence",
+      "valid": false
+    },
+    {
+      "id": "invalid/unit-mismatch",
+      "path": "invalid/unit-mismatch",
+      "valid": false
+    },
+    {
+      "id": "invalid/unknown-treated-as-pass",
+      "path": "invalid/unknown-treated-as-pass",
+      "valid": false
+    }
+  ],
+  "operational_cases": [
+    "invalid/missing-wheel-schema/case.json"
+  ],
+  "schema_version": "0.1.1"
+}

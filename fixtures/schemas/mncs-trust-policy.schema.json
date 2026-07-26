@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mncs.dev/schema/0.2/mncs-trust-policy.schema.json",
+  "title": "MNCS deterministic trust policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "trust_domain", "keys", "allowed_predicate_types", "minimum_signatures", "distinct_signers", "required_roles", "unknown_handling", "offline", "revocations", "extensions"],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "trust_domain": {"type": "string", "minLength": 1},
+    "keys": {"type": "array", "minItems": 1, "items": {"$ref": "mncs-key-record.schema.json"}},
+    "allowed_predicate_types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "minimum_signatures": {"type": "integer", "minimum": 1},
+    "distinct_signers": {"type": "integer", "minimum": 1},
+    "required_roles": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "minimum_independent_evaluators": {"type": "integer", "minimum": 0},
+    "require_generator_evaluator_separation": {"type": "boolean"},
+    "unknown_handling": {"enum": ["reject", "manual_review"]},
+    "offline": {"const": true},
+    "revocations": {"type": "array", "items": {"$ref": "mncs-revocation-record.schema.json"}},
+    "extensions": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9.-]*:[A-Za-z0-9][A-Za-z0-9._-]*$"}
+    }
+  }
+}
