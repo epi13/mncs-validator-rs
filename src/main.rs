@@ -76,6 +76,11 @@ enum Command {
     Corpus {
         path: PathBuf,
     },
+    /// Validate an MNCS Rights & Provenance v0.2 manifest and evaluate
+    /// canonical release policy (distinct from technical-correctness checks).
+    RightsValidate {
+        manifest: PathBuf,
+    },
 }
 
 fn emit<T: Serialize>(value: &T, json_output: bool) -> Result<()> {
@@ -210,6 +215,13 @@ fn run(cli: Cli) -> Result<u8> {
             let valid = report.mismatch_count == 0 && report.unsupported_count == 0;
             emit(&report, true)?;
             Ok(if valid { 0 } else { EXIT_INVALID })
+        }
+        Command::RightsValidate { manifest } => {
+            use mncs_validator_rs::rights;
+            let content = rights::read_manifest(&manifest)?;
+            let report = rights::validate_manifest(&content)?;
+            emit(&report, cli.json)?;
+            Ok(rights::exit_code(&report))
         }
     }
 }
