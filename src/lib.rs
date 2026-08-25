@@ -5,5 +5,6 @@ pub mod canonical;
 pub mod corpus;
 pub mod json;
 pub mod package;
+pub mod rights;
 pub mod trust;
 pub mod validation;
