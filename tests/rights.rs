@@ -181,10 +181,9 @@ fn scaffold_default_manifest_requires_review() {
 
 #[test]
 fn incompatible_third_party_license_blocks() {
-    let mut manifest =
-        ok!(serde_json::to_value(ok!(serde_json::from_str::<serde_json::Value>(
-            CLEAN_MANIFEST
-        ))));
+    let mut manifest = ok!(serde_json::to_value(ok!(serde_json::from_str::<
+        serde_json::Value,
+    >(CLEAN_MANIFEST))));
     manifest["rights"]["sources"] = serde_json::json!([
         {"kind": "repository", "reference": "https://upstream.invalid/x", "license_status": "incompatible"}
     ]);
@@ -195,10 +194,9 @@ fn incompatible_third_party_license_blocks() {
 
 #[test]
 fn cyclic_graph_is_invalid() {
-    let mut manifest =
-        ok!(serde_json::to_value(ok!(serde_json::from_str::<serde_json::Value>(
-            CLEAN_MANIFEST
-        ))));
+    let mut manifest = ok!(serde_json::to_value(ok!(serde_json::from_str::<
+        serde_json::Value,
+    >(CLEAN_MANIFEST))));
     manifest["provenance"]["graph"] = serde_json::json!({
         "nodes": [
             {"id": "a", "kind": "artifact"},
@@ -221,10 +219,9 @@ fn cyclic_graph_is_invalid() {
 
 #[test]
 fn unsupported_schema_version_is_invalid_not_guessed() {
-    let mut manifest =
-        ok!(serde_json::to_value(ok!(serde_json::from_str::<serde_json::Value>(
-            CLEAN_MANIFEST
-        ))));
+    let mut manifest = ok!(serde_json::to_value(ok!(serde_json::from_str::<
+        serde_json::Value,
+    >(CLEAN_MANIFEST))));
     manifest["schema_version"] = serde_json::json!("9.9.9");
     let content = ok!(serde_json::to_vec(&manifest));
     let report = report!(&content);
