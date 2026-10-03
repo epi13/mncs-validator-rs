@@ -1,5 +1,8 @@
 # mncs-validator-rs
 
+<!-- MNCS:generated:begin -->
+<!-- MNCS:generated:end -->
+
 Independent, offline Rust validator for
 [MNCS 0.2](https://github.com/epi13/machine-native-complexity-standard).
 It does not invoke, embed, or wrap the Python validator and never executes evidence

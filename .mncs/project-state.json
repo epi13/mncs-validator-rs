@@ -1,0 +1,17 @@
+{
+  "schema_version": "mncs.project-intent/1",
+  "purpose": "Independent, offline Rust validator for MNCS 0.2: strict JSON, JCS identities, schema verdicts, stable hashes, Ed25519 verification, trust evaluation, and package inspection -- never executing evidence.",
+  "entry": [
+    "cargo test --offline"
+  ],
+  "milestones": [
+    {
+      "id": "mncs-validator-rs:projection-conformance",
+      "title": "Declared ambient projection surfaces satisfy their contract",
+      "subject_slot": "declarations",
+      "evidence": "projection-conformance",
+      "dependencies": [],
+      "blockers": []
+    }
+  ]
+}
