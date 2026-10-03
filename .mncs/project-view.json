@@ -1,0 +1,22 @@
+{
+  "capabilities": [
+    {
+      "contract": "offline-validator",
+      "fingerprint_sources": [
+        "src/"
+      ],
+      "kind": "validator",
+      "stability": "experimental",
+      "version": "0.2.0"
+    }
+  ],
+  "dependencies": [],
+  "entry": [
+    "cargo test --offline"
+  ],
+  "purpose": "Independent, offline Rust validator for MNCS 0.2: strict JSON, JCS identities, schema verdicts, stable hashes, Ed25519 verification, trust evaluation, and package inspection -- never executing evidence.",
+  "repository": "mncs-validator-rs",
+  "schema_version": "mncs.project-view/1",
+  "source_identity": "sha256:c83189a42a19223e2085d8264df8fb9b483c2f000d34aa1c42e956af012f61ac",
+  "structure": {}
+}

@@ -1,6 +1,19 @@
 # mncs-validator-rs
 
 <!-- MNCS:generated:begin -->
+## Project entry
+
+Independent, offline Rust validator for MNCS 0.2: strict JSON, JCS identities, schema verdicts, stable hashes, Ed25519 verification, trust evaluation, and package inspection -- never executing evidence.
+
+```bash
+cargo test --offline
+```
+
+Declared capabilities (declarations do not establish execution health):
+
+- `offline-validator/0.2.0` — validator (experimental)
+
+Semantic sources and ownership: `.mncs/projections.json`.
 <!-- MNCS:generated:end -->
 
 Independent, offline Rust validator for
